@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jelajah Nusantara</title>
+<style>
+:root{--bg:#e6f5ff;--cd:#fff;--tx:#12324a;--pr:#0b8f6a;--ac:#ff9f1c;--bad:#d64545;--ok:#1b9e5a;--bd:#a9cfe6;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e2233;--cd:#16334a;--tx:#eaf4fb;--pr:#34d3a0;--ac:#ffb84d;--bad:#ff7a7a;--ok:#4ade80;--bd:#2d5573}}
+:root[data-theme=dark]{--bg:#0e2233;--cd:#16334a;--tx:#eaf4fb;--pr:#34d3a0;--ac:#ffb84d;--bad:#ff7a7a;--ok:#4ade80;--bd:#2d5573}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.45 "Trebuchet MS",Verdana,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+.box{max-width:980px;margin:12px auto;background:var(--cd);border:3px solid var(--bd);border-radius:20px;padding:16px}
+h1{margin:0;font-size:2em;text-align:center}.sub{text-align:center;margin:4px 0 8px}
+label{display:block;margin:8px 0;font-weight:bold}input,select{width:100%;padding:11px;font-size:1em;border:2px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx)}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:10px 14px;background:var(--ac);color:#222;font-weight:bold}
+.big{display:block;width:100%;padding:16px;font-size:1.25em;margin:10px 0;background:var(--pr);color:#fff}.big2{display:block;width:100%;padding:12px;margin:8px 0;background:var(--ac)}
+.sm{padding:6px 10px}.top{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;font-weight:bold}
+.pb{height:12px;background:var(--bd);border-radius:8px;margin:8px 0;overflow:hidden}.pb i{display:block;height:100%;background:var(--pr);transition:.3s}
+.msg{min-height:44px;padding:8px 12px;border-radius:12px;background:var(--bg);margin:6px 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.tab{background:var(--bg);color:var(--tx);border:2px solid var(--bd)}.tab.on{background:var(--pr);color:#fff}
+.grid{display:grid;gap:4px;justify-content:center;margin:10px auto;padding:10px;background:#7ec8e8;border-radius:16px}
+.tile{aspect-ratio:1;border-radius:8px;border:2px solid rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;text-align:center;font-size:.62em;font-weight:bold;color:#222;line-height:1.1;min-width:0;overflow:hidden}
+.mini .tile{min-width:0;border-width:1px}.mini{gap:2px;padding:6px}
+.gS{background:#ffd166}.gJ{background:#ef8a8a}.gN{background:#c9a6f0}.gK{background:#7bd88f}.gL{background:#ff9f68}.gM{background:#f4e285}.gP{background:#8fb8ff}
+.tile.ok{outline:3px solid var(--ok)}.slot{transition:.2s}.slot:hover{transform:scale(1.06)}
+.cards{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.card{padding:12px 14px;background:var(--cd);border:3px solid var(--ac);border-radius:14px;font-weight:bold;cursor:grab;user-select:none}.card.sel{background:var(--ac);color:#222;transform:scale(1.07)}
+.rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}.row{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:6px 10px;border:2px solid var(--bd);border-radius:12px}
+.ans{min-width:130px;min-height:44px;padding:8px;border:3px dashed var(--bd);border-radius:10px;text-align:center}.ans.ok{border:3px solid var(--ok);background:var(--ok);color:#fff}
+.q small{color:var(--pr);font-weight:bold}.q p{font-size:1.2em;margin:4px 0 10px}
+.opt{display:block;width:100%;margin:8px 0;padding:14px;text-align:left;background:var(--bg);color:var(--tx);border:3px solid var(--bd)}.opt.good{background:var(--ok);color:#fff}.opt.bad{background:var(--bad);color:#fff}
+.map{width:100%;max-height:62vh;display:block;background:#7ec8e8;border-radius:16px;margin:8px 0}.map path{stroke:#3d5a3a;stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}.map path.ok{stroke:var(--ok);stroke-width:3.5}.map path.slot:hover{filter:brightness(1.15);transform:none}.map text{fill:#12324a;font-weight:bold;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#fff;stroke-width:.06px}
+.isl{font-size:2em;text-align:center}.pet{background:var(--bg);padding:10px;border-radius:12px;font-size:.9em}
+table{border-collapse:collapse;width:100%;font-size:.85em}td,th{border:1px solid var(--bd);padding:5px;text-align:left}th{background:var(--bg)}
+.wrap{overflow-x:auto}.bar{height:14px;background:var(--bd);border-radius:7px}.bar i{display:block;height:100%;background:var(--pr);border-radius:7px}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}.st div{background:var(--bg);padding:8px;border-radius:10px}
+.ctl{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.ctl input,.ctl select{width:auto;flex:1;min-width:120px}
+.g{color:var(--ok);font-weight:bold}.b{color:var(--bad);font-weight:bold}
+@media print{button,.ctl,.noprint{display:none!important}body{background:#fff;color:#000}}
+</style></head><body><div id="app"></div>
+<script>
+const P=`Aceh|Banda Aceh|S|0|0
+Sumatera Utara|Medan|S|1|1
+Kepulauan Riau|Tanjungpinang|S|3|1
+Sumatera Barat|Padang|S|1|2
+Riau|Pekanbaru|S|2|2
+Jambi|Jambi|S|2|3
+Bengkulu|Bengkulu|S|1|3
+Sumatera Selatan|Palembang|S|2|4
+Kepulauan Bangka Belitung|Pangkalpinang|S|3|4
+Lampung|Bandar Lampung|S|2|5
+Banten|Serang|J|3|6
+DKI Jakarta|Jakarta|J|4|6
+Jawa Barat|Bandung|J|5|6
+Jawa Tengah|Semarang|J|6|6
+DI Yogyakarta|Yogyakarta|J|6|7
+Jawa Timur|Surabaya|J|7|6
+Bali|Denpasar|N|8|6
+Nusa Tenggara Barat|Mataram|N|9|6
+Nusa Tenggara Timur|Kupang|N|10|6
+Kalimantan Barat|Pontianak|K|5|2
+Kalimantan Tengah|Palangka Raya|K|6|3
+Kalimantan Selatan|Banjarbaru|K|7|3
+Kalimantan Timur|Samarinda|K|7|2
+Kalimantan Utara|Tanjung Selor|K|7|1
+Sulawesi Utara|Manado|L|10|1
+Gorontalo|Gorontalo|L|9|1
+Sulawesi Tengah|Palu|L|9|2
+Sulawesi Barat|Mamuju|L|9|3
+Sulawesi Selatan|Makassar|L|9|4
+Sulawesi Tenggara|Kendari|L|10|3
+Maluku Utara|Sofifi|M|11|2
+Maluku|Ambon|M|12|4
+Papua Barat Daya|Sorong|P|13|2
+Papua Barat|Manokwari|P|14|2
+Papua Tengah|Nabire|P|15|3
+Papua|Jayapura|P|16|2
+Papua Pegunungan|Wamena|P|16|3
+Papua Selatan|Merauke|P|16|4`.split("\n").map(l=>{const a=l.split("|");return{n:a[0],c:a[1],g:a[2],x:+a[3],y:+a[4]}});
+const PD={};P.forEach(p=>PD[p.n]=p);
+const G={S:"Sumatera",J:"Jawa",N:"Bali & Nusa Tenggara",K:"Kalimantan",L:"Sulawesi",M:"Maluku",P:"Papua"};
+const Q=`Wisata Laut|Taman laut Bunaken yang indah dan Gunung Klabat berada di provinsi...|Sulawesi Utara
+Wisata Laut|Taman Nasional Wakatobi, surga bawah laut yang terkenal, berada di provinsi...|Sulawesi Tenggara
+Wisata dan Budaya|Masjid 99 Kubah dan Pantai Losari berada di Kota Makassar, ibu kota provinsi...|Sulawesi Selatan
+Alam|Taman Nasional Lore Lindu yang kaya keanekaragaman hayati berada di provinsi...|Sulawesi Tengah
+Sejarah dan Budaya|Pulau Ternate dan Tidore, serta Pulau Halmahera, berada di provinsi...|Maluku Utara
+Sejarah dan Rempah|Pulau Banda terkenal dengan sejarah rempah pala, dan Pantai Ora berada di provinsi...|Maluku
+Budaya|Lembah Baliem, tempat suku Dani dengan rumah Honai, berada di provinsi...|Papua Pegunungan
+Budaya dan Alam|Taman Nasional Wasur dan suku Marind yang pandai mengukir kayu ada di provinsi...|Papua Selatan
+Alam|Puncak Jaya, puncak tertinggi di Indonesia, berada di provinsi...|Papua|Papua Tengah
+Wisata Laut|Kepulauan Raja Ampat dengan terumbu karang yang memukau berada di provinsi...|Papua Barat|Papua Barat Daya
+Kota Penting|Kota Jayapura adalah pusat pemerintahan dan ekonomi di provinsi...|Papua
+Alam|Bunga Rafflesia arnoldii dan Gunung Kaba berada di provinsi...|Bengkulu
+Wisata dan Kuliner|Jembatan Ampera, Festival Musi, dan pempek berasal dari provinsi...|Sumatera Selatan
+Satwa|Pesut Mahakam hidup di Sungai Mahakam, provinsi...|Kalimantan Timur
+Sejarah|Candi Borobudur, Situs Warisan Dunia UNESCO, berada di provinsi...|Jawa Tengah`.split("\n").map(l=>{const a=l.split("|");return{k:a[0],t:a[1],a:a[2],x:a[3]||""}});
+const TOT=[38,10,15],MN=["Detektif Peta Nusantara","Pasangan Ibu Kota","Detektif Keunikan Daerah"],
+KOM=["Menunjukkan letak provinsi pada peta","Mencocokkan provinsi dengan ibu kota","Mengidentifikasi ciri khas daerah"],
+PRE=["Kemampuanmu menunjukkan letak provinsi pada peta ","Kemampuanmu mencocokkan provinsi dengan ibu kotanya ","Kemampuanmu mengenali ciri khas daerah "];
+const $=s=>document.querySelector(s),
+sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a},
+E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])),
+kat=p=>p>=85?"Sangat Baik":p>=70?"Baik":p>=55?"Cukup":"Perlu Latihan Lagi",
+bdg=p=>p>=85?"🥇":p>=70?"🥈":p>=55?"🥉":"🌱",
+fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0"),
+st=(a,m)=>{const c=a.filter(x=>x.m==m&&x.ok).length,t=TOT[m-1];return{t,c,w:t-c,p:Math.round(c/t*100)}};
+const K="jn_results",TK="jn_timer";
+const load=()=>{try{return JSON.parse(localStorage.getItem(K))||[]}catch(e){return[]}};
+const save=a=>{try{localStorage.setItem(K,JSON.stringify(a));return true}catch(e){return false}};
+let S=null,M=null,mute=false,tmr=0,left=0,D={q:"",k:"",s:"d"};
+function snd(ok){if(mute)return;try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?880:220;o.type=ok?"sine":"square";g.gain.value=.08;o.start();o.stop(c.currentTime+(ok?.15:.3))}catch(e){}}
+function rec(m,id,q,u,c,ok){const k=m+"|"+id;if(!S.ans[k])S.ans[k]={m,q,u,c,ok,k}}
+function grid(l,fn,cls){const x0=Math.min(...l.map(p=>p.x)),y0=Math.min(...l.map(p=>p.y)),w=Math.max(...l.map(p=>p.x))-x0+1;
+return `<div class="grid ${cls||""}" style="grid-template-columns:repeat(${w},minmax(0,${cls?18:w>9?50:76}px))">`+l.map(p=>fn(p,`grid-column:${p.x-x0+1};grid-row:${p.y-y0+1}`)).join("")+"</div>"}
+/* Poligon disederhanakan (lon,lat), mendekati bentuk asli, bukan batas resmi */
+const SH={
+"Aceh":"95.3,5.6 97.6,5.3 98.3,4.0 98.2,3.3 97.5,2.7 96.5,3.5 95.6,4.6",
+"Sumatera Utara":"98.2,3.3 98.3,4.0 99.8,3.0 100.4,2.3 100.2,1.4 100.0,0.4 99.3,0.2 98.6,1.6 97.5,2.7",
+"Riau":"100.4,2.3 101.5,2.2 102.8,1.6 103.8,1.0 103.6,0.2 103.4,-0.9 101.8,-0.9 101.1,-0.2 100.5,0.3 100.0,0.4 100.2,1.4",
+"Sumatera Barat":"99.3,0.2 100.0,0.4 100.5,0.3 101.1,-0.2 101.8,-0.9 101.5,-1.9 101.2,-2.3 100.6,-1.5 100.3,-0.9 99.9,-0.2",
+"Jambi":"101.8,-0.9 103.4,-0.9 104.3,-1.8 104.0,-2.2 103.0,-2.6 102.0,-2.2 101.5,-1.9",
+"Bengkulu":"101.2,-2.3 101.5,-1.9 102.0,-2.2 102.6,-3.3 103.2,-4.3 103.5,-5.0 102.3,-3.8",
+"Sumatera Selatan":"102.0,-2.2 103.0,-2.6 104.0,-2.2 104.9,-2.5 105.9,-3.1 105.8,-4.0 104.5,-4.9 103.5,-5.0 103.2,-4.3 102.6,-3.3",
+"Lampung":"103.5,-5.0 104.5,-4.9 105.8,-4.0 106.0,-5.0 105.8,-5.9 104.6,-5.9 103.9,-5.5",
+"Kepulauan Bangka Belitung":"105.1,-1.6 105.9,-1.5 106.8,-2.0 106.6,-2.9 105.9,-3.1 105.2,-2.4;107.5,-2.6 108.3,-2.6 108.3,-3.3 107.5,-3.3",
+"Kepulauan Riau":"103.8,1.0 104.5,1.1 104.7,0.7 104.0,0.5;104.4,-0.1 104.8,-0.4 104.5,-0.7 104.2,-0.4;107.9,3.6 108.4,3.9 108.4,3.2 107.9,3.2",
+"Banten":"105.1,-6.0 106.65,-6.05 106.65,-6.4 106.7,-6.6 106.5,-7.0 105.9,-7.0 105.2,-6.8",
+"DKI Jakarta":"106.65,-6.05 107.05,-6.05 107.05,-6.4 106.65,-6.4",
+"Jawa Barat":"106.65,-6.4 107.05,-6.4 107.05,-6.05 107.8,-6.2 108.7,-6.75 108.8,-7.7 108.0,-7.8 107.0,-7.4 106.5,-7.0 106.7,-6.6",
+"Jawa Tengah":"108.7,-6.75 109.5,-6.8 110.5,-6.6 111.2,-6.6 111.7,-6.9 111.2,-7.7 111.1,-8.2 110.9,-8.0 110.7,-7.6 110.0,-7.8 110.0,-7.95 109.0,-7.8 108.8,-7.7",
+"DI Yogyakarta":"110.0,-7.8 110.7,-7.6 110.9,-8.0 110.4,-8.2 110.0,-7.95",
+"Jawa Timur":"111.7,-6.9 112.6,-6.9 113.6,-7.5 114.4,-7.7 114.4,-8.7 113.5,-8.4 112.5,-8.3 111.8,-8.3 111.1,-8.2 111.2,-7.7;112.7,-6.95 114.0,-6.95 114.0,-7.2 112.7,-7.2",
+"Bali":"114.45,-8.2 115.0,-8.1 115.7,-8.2 115.7,-8.7 115.2,-8.8 114.6,-8.7",
+"Nusa Tenggara Barat":"115.9,-8.4 116.7,-8.3 116.7,-9.0 116.0,-9.0;116.8,-8.4 118.5,-8.3 119.1,-8.5 118.9,-9.0 117.0,-9.0 116.8,-8.9",
+"Nusa Tenggara Timur":"119.8,-8.3 122.9,-8.3 123.0,-8.7 121.0,-8.9 119.8,-8.6;118.9,-9.5 120.3,-9.4 120.3,-10.3 119.2,-10.0;123.5,-10.0 124.2,-9.4 125.1,-9.5 124.8,-10.3 123.6,-10.4",
+"Kalimantan Barat":"109.0,1.9 110.0,1.6 111.0,1.2 112.5,1.4 114.0,1.0 114.0,0.0 112.0,-0.8 111.2,-1.8 110.3,-3.0 110.0,-1.8 109.4,-0.5 109.0,0.8",
+"Kalimantan Tengah":"112.0,-0.8 114.0,0.0 114.8,-0.4 115.5,-1.5 115.6,-2.4 114.4,-3.4 113.0,-3.3 111.5,-3.3 110.3,-3.0 111.2,-1.8",
+"Kalimantan Selatan":"115.5,-1.5 116.3,-1.6 116.7,-2.8 116.1,-3.9 115.4,-4.2 114.6,-3.9 114.4,-3.4 115.6,-2.4",
+"Kalimantan Timur":"114.0,0.0 114.0,1.0 115.0,1.6 116.5,2.0 117.6,1.7 118.0,0.9 117.6,0.0 117.2,-0.9 116.7,-1.4 116.3,-1.6 115.5,-1.5 114.8,-0.4",
+"Kalimantan Utara":"114.0,1.0 114.0,2.0 115.0,3.6 116.0,4.4 117.0,4.3 117.7,4.0 118.1,3.0 117.8,2.2 117.6,1.7 116.5,2.0 115.0,1.6",
+"Sulawesi Utara":"123.3,0.9 124.0,1.5 125.0,1.8 125.1,1.3 124.8,0.5 124.0,0.3 123.2,0.4",
+"Gorontalo":"121.3,0.9 122.5,0.9 123.3,0.9 123.2,0.4 122.4,0.4 121.3,0.4",
+"Sulawesi Tengah":"119.8,0.0 120.8,1.0 121.3,0.9 121.3,0.4 122.4,0.4 123.4,-0.1 123.3,-1.2 122.5,-1.0 122.0,-1.5 121.6,-2.0 121.8,-3.0 121.0,-3.0 120.3,-2.9 119.8,-2.4 119.4,-1.5 119.7,-0.5",
+"Sulawesi Barat":"119.4,-1.5 119.8,-2.4 119.5,-3.1 119.2,-3.5 118.9,-3.0 118.8,-2.3 119.0,-1.8",
+"Sulawesi Selatan":"119.2,-3.5 119.5,-3.1 119.8,-2.4 120.3,-2.9 121.0,-3.0 121.3,-3.5 120.5,-4.5 120.4,-5.6 119.6,-5.7 119.4,-4.6",
+"Sulawesi Tenggara":"121.0,-3.0 121.8,-3.0 122.6,-3.5 122.9,-4.1 122.4,-4.4 122.8,-5.0 122.3,-5.5 121.6,-4.8 121.3,-4.2 121.3,-3.5;122.7,-4.4 123.3,-4.6 123.2,-5.4 122.7,-5.3",
+"Maluku Utara":"127.5,1.8 128.2,1.5 128.4,0.8 127.9,0.3 128.2,-0.5 127.7,-0.8 127.6,0.0 127.4,0.5 127.6,1.2;128.3,2.4 128.6,2.4 128.6,2.0 128.3,2.0;127.3,-1.3 128.3,-1.4 128.1,-1.8 127.3,-1.7;125.2,-1.8 126.6,-1.8 126.6,-2.1 125.2,-2.1",
+"Maluku":"128.0,-3.0 129.5,-2.9 130.8,-3.1 130.5,-3.6 129.0,-3.7 128.0,-3.4;126.5,-3.2 127.5,-3.2 127.5,-3.8 126.6,-3.8;133.7,-5.5 134.7,-5.5 134.7,-6.9 134.0,-6.9;131.0,-7.0 131.8,-7.2 131.9,-8.2 131.0,-8.0",
+"Papua Barat Daya":"131.1,-0.8 132.0,-0.4 132.8,-0.5 133.0,-1.3 132.8,-2.2 132.0,-2.3 131.3,-1.5;130.5,0.0 131.2,0.1 131.5,-0.4 130.8,-0.5",
+"Papua Barat":"132.8,-0.5 133.8,-0.7 134.6,-0.9 134.9,-2.0 134.8,-3.5 134.9,-4.0 133.5,-4.0 132.8,-3.4 132.3,-2.5 132.8,-2.2 133.0,-1.3",
+"Papua Tengah":"134.8,-3.5 135.3,-3.2 136.3,-3.9 137.3,-3.9 138.0,-4.4 138.3,-5.0 137.9,-5.6 137.0,-5.0 136.0,-4.8 135.0,-4.2 134.9,-4.0",
+"Papua":"136.3,-2.2 138.0,-1.7 139.5,-2.2 141.0,-2.6 141.0,-4.2 140.2,-4.0 139.0,-3.9 138.0,-4.4 137.3,-3.9 136.3,-3.9 135.3,-3.2 135.8,-2.8;135.5,-1.7 136.9,-1.7 136.9,-2.0 135.5,-2.0;135.8,-0.8 136.2,-0.8 136.2,-1.2 135.8,-1.2",
+"Papua Pegunungan":"138.0,-4.4 139.0,-3.9 140.2,-4.0 141.0,-4.2 141.0,-5.0 140.0,-5.2 139.0,-5.1 138.3,-5.0",
+"Papua Selatan":"138.3,-5.0 139.0,-5.1 140.0,-5.2 141.0,-5.0 141.0,-9.1 140.3,-8.6 139.2,-8.2 138.2,-7.5 138.0,-6.5 137.9,-5.6"};
+const GC={S:"#ffd166",J:"#ef8a8a",N:"#c9a6f0",K:"#7bd88f",L:"#ff9f68",M:"#f4e285",P:"#8fb8ff"},
+VB={A:"94 -7 48 17",S:"94.5 -6.2 15 12.6",J:"104.8 5.5 11 3.7",N:"114.3 7.6 11.4 3.6",K:"108.5 -4.8 10.5 9.4",L:"118.5 -2.2 7.2 8.4",M:"124 -3 11.5 12",P:"130 -0.8 11.8 10.5"};
+const hs=s=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return((h>>>0)%2000)/1000-1};
+function jag(a,b,d){const l=Math.hypot(b[0]-a[0],b[1]-a[1]);if(d==0||l<.15)return[a];
+const sw=a[0]>b[0]||(a[0]==b[0]&&a[1]>b[1]),p=sw?b:a,q=sw?a:b,r=hs(p+"|"+q),dx=q[0]-p[0],dy=q[1]-p[1],m=[(a[0]+b[0])/2-dy*r*.17,(a[1]+b[1])/2+dx*r*.17];
+return[...jag(a,m,d-1),...jag(m,b,d-1)]}
+function mapSvg(g){const fs=+VB[g].split(" ")[2]/34;
+return `<svg class=map viewBox="${VB[g]}">`+P.filter(p=>g=="A"||p.g==g).map(p=>{const parts=SH[p.n].split(";").map(s=>s.split(" ").map(c=>c.split(",").map(Number)));
+const d=parts.map(q=>{let z=[];q.forEach((c,i)=>z.push(...jag(c,q[(i+1)%q.length],3)));let w=[];z.forEach((c,i)=>{const n=z[(i+1)%z.length];w.push([.75*c[0]+.25*n[0],.75*c[1]+.25*n[1]],[.25*c[0]+.75*n[0],.25*c[1]+.75*n[1]])});return "M"+w.map(c=>c[0].toFixed(3)+","+(-c[1]).toFixed(3)).join("L")+"Z"}).join(""),f=parts[0],cx=(Math.min(...f.map(c=>c[0]))+Math.max(...f.map(c=>c[0])))/2,cy=-(Math.min(...f.map(c=>c[1]))+Math.max(...f.map(c=>c[1])))/2,ok=M&&M.sd&&M.sd[p.n];
+return `<path class="slot${ok?" ok":""}" data-s="${E(p.n)}" fill="${GC[p.g]}" d="${d}"/>`+(ok&&g!="A"?`<text x="${cx}" y="${cy}" font-size="${fs}">${E(p.n)}</text>`:"")}).join("")+`</svg>`}
+function home(){clearInterval(tmr);S=M=null;
+$("#app").innerHTML=`<div class=box><h1>🧭 JELAJAH NUSANTARA</h1><p class=sub>Mengenal Provinsi, Ibu Kota, dan Keunikan Daerah di Indonesia</p><div class=isl>⛵ 🏝️ 🌋 🐘 🦜 🧭</div>
+${mapSvg("A")}
+<label>Nama siswa<input id=nm placeholder="Tulis namamu"></label><label>Kelas<input id=ks value="4"></label>
+<label>Mode<select id=md><option value=eval>Evaluasi (dinilai, satu kesempatan)</option><option value=prak>Latihan (ada petunjuk, boleh coba lagi)</option></select></label>
+<button class=big onclick=begin()>MULAI PETUALANGAN</button><button class=big2 onclick=teacher()>DASHBOARD GURU</button>
+<div class=pet><b>Petunjuk:</b> Ada 3 misi. Misi 1: pasang nama provinsi pada peta (pilih tab pulau). Misi 2: pasangkan ibu kota dengan provinsinya. Misi 3: tebak asal budaya daerah. Pilih kartu lalu ketuk tempatnya, atau seret kartu. Peta digambar sederhana, mendekati bentuk aslinya (bukan batas resmi).</div></div>`}
+function begin(){const n=$("#nm").value.trim();if(!n){alert("Isi namamu dulu ya!");return}
+const qs=sh(Q).slice(0,15).map(q=>{const d=[...sh(P.filter(p=>p.n!=q.a&&q.x.indexOf(p.n)<0&&p.g==PD[q.a].g)).slice(0,2),...sh(P.filter(p=>p.g!=PD[q.a].g))].slice(0,3).map(p=>p.n);return{...q,o:sh([q.a,...d])}});
+S={name:n,cls:$("#ks").value.trim()||"-",mode:$("#md").value,ans:{},sl:sh(P).slice(0,10),qs};
+left=(+localStorage.getItem(TK)||0)*60;mission(1);
+if(left>0){clearInterval(tmr);tmr=setInterval(()=>{left--;const t=$("#tm");if(t)t.textContent=fmt(left);if(left<=0){clearInterval(tmr);alert("Waktu habis!");finishAll()}},1000)}}
+function mission(n){M={n,sel:null,done:{},sd:{},tries:{},g:"S",i:0,lock:0,msg:""};
+M.cards=n==1?sh(P):n==2?sh(S.sl):[];draw()}
+const pts=()=>Object.values(S.ans).filter(a=>a.ok).length;
+function draw(){const n=M.n,tot=n==3?15:n==1?38:10,pr=n==3?M.i:Object.keys(M.done).length;
+let h=`<div class=box><div class=top><span>Misi ${n}: ${MN[n-1]}</span><span>⭐ ${pts()}</span><span id=tm>${left?fmt(left):""}</span><button class=sm onclick="mute=!mute;this.textContent=mute?'🔇':'🔊'">${mute?"🔇":"🔊"}</button></div>
+<div class=pb><i style="width:${pr/tot*100}%"></i></div><div id=msg class=msg>${E(M.msg||(n==3?"Pilih jawaban yang paling tepat.":"Pilih kartu, lalu ketuk atau seret ke tempat yang benar."))}</div>`;
+if(n==1){h+=`<div class=tabs>`+["A",...Object.keys(G)].map(g=>{const t=P.filter(p=>g=="A"||p.g==g),d=t.filter(p=>M.done[p.n]).length;return `<button class="tab ${M.g==g?"on":""}" onclick="M.g='${g}';M.sel=null;draw()">${G[g]||"Semua"} ${d}/${t.length}</button>`}).join("")+`</div>`;
+h+=mapSvg(M.g);
+h+=`<div class=cards>`+M.cards.filter(c=>(M.g=="A"||c.g==M.g)&&!M.done[c.n]).map(c=>cardH(c.n,c.n)).join("")+`</div>`}
+if(n==2){h+=`<div class=rows>`+S.sl.map(p=>`<div class=row><b>${E(p.n)}</b><div class="slot ans ${M.sd[p.n]?"ok":""}" data-s="${E(p.n)}">${M.sd[p.n]?E(p.c):"ibu kota?"}</div></div>`).join("")+`</div><div class=cards>`+M.cards.filter(c=>!M.done[c.n]).map(c=>cardH(c.n,c.c)).join("")+`</div>`}
+if(n==3){const q=S.qs[M.i];h+=`<div class=q><small>${E(q.k)} - soal ${M.i+1}/15</small><p>${E(q.t)}</p>`+q.o.map(o=>`<button class="opt ${M.sd[o]||""}" ${M.lock||M.sd[o]?"disabled":""} data-o="${E(o)}" onclick="ans3(this.dataset.o)">${E(o)}</button>`).join("")+`</div>`+(M.lock?`<button class=big onclick=nx3()>${M.i==14?"Selesai Misi":"Soal Berikutnya ➜"}</button>`:"")}
+else h+=`<button class=big2 onclick=fin()>Selesai Misi ${n}</button>`;
+h+=`<button class=sm onclick=quit()>Akhiri permainan</button></div>`;$("#app").innerHTML=h}
+const cardH=(id,l)=>`<div class="card ${M.sel==id?"sel":""}" draggable=true data-c="${E(id)}">${E(l)}</div>`;
+document.addEventListener("click",e=>{if(!M||!S||M.n==3)return;const c=e.target.closest(".card"),s=e.target.closest(".slot");if(c){M.sel=c.dataset.c;draw()}else if(s)place(s.dataset.s)});
+document.addEventListener("dragstart",e=>{const c=e.target.closest&&e.target.closest(".card");if(c&&M){M.sel=c.dataset.c;try{e.dataTransfer.setData("text",M.sel)}catch(x){}}});
+document.addEventListener("dragover",e=>{if(e.target.closest&&e.target.closest(".slot"))e.preventDefault()});
+document.addEventListener("drop",e=>{const s=e.target.closest&&e.target.closest(".slot");if(s&&M){e.preventDefault();place(s.dataset.s)}});
+function place(sid){if(!M.sel){$("#msg").textContent="Pilih kartu dulu ya 😊";return}
+const cid=M.sel,eva=S.mode=="eval",n=M.n;if(M.done[cid]||M.sd[sid])return;const ok=cid==sid,p=PD[cid];
+if(!M.tries[cid]){M.tries[cid]=1;rec(n,cid,n==1?"Letakkan "+cid+" pada peta":"Pasangkan ibu kota "+p.c+" dengan provinsinya",sid,cid,ok)}
+snd(ok);
+if(ok){M.done[cid]=1;M.sd[sid]=1;M.sel=null;M.msg="🎉 Tepat! "+(n==1?cid+" ada di "+G[p.g]+".":p.c+" adalah ibu kota "+cid+".")}
+else if(eva){M.done[cid]=1;M.sel=null;M.msg="❌ Belum tepat. "+(n==1?cid+" ada di "+G[p.g]+".":"Ibu kota "+cid+" adalah "+p.c+".")}
+else M.msg="🤔 Belum tepat, coba lagi. Petunjuk: "+(n==1?"provinsi ini ada di "+G[p.g]+".":"provinsinya ada di "+G[p.g]+".");
+draw()}
+function ans3(o){const q=S.qs[M.i],ok=o==q.a,eva=S.mode=="eval";if(!M.tries[M.i]){M.tries[M.i]=1;rec(3,M.i,"["+q.k+"] "+q.t,o,q.a,ok)}
+snd(ok);M.sd[o]=ok?"good":"bad";
+if(ok){M.lock=1;M.msg="✅ Benar! Jawabannya "+q.a+"."}else if(eva){M.lock=1;M.sd[q.a]="good";M.msg="❌ Jawaban yang benar: "+q.a+"."}else M.msg="❌ Belum tepat, coba pilihan lain.";draw()}
+function nx3(){M.lock=0;M.sd={};M.msg="";M.i++;M.i>14?endM():draw()}
+function fin(){const r=(M.n==1?38:10)-Object.keys(M.done).length;if(r&&!confirm("Masih ada "+r+" kartu yang belum dipasang. Yakin selesai?"))return;endM()}
+function quit(){if(confirm("Yakin mengakhiri permainan? Hasil yang ada akan dihitung."))finishAll()}
+function fillAll(m){if(!m||m==1)P.forEach(p=>rec(1,p.n,"Letakkan "+p.n+" pada peta","-",p.n,false));if(!m||m==2)S.sl.forEach(p=>rec(2,p.n,"Pasangkan ibu kota "+p.c+" dengan provinsinya","-",p.n,false));if(!m||m==3)S.qs.forEach((q,i)=>rec(3,i,"["+q.k+"] "+q.t,"-",q.a,false))}
+function endM(){const n=M.n;fillAll(n);const s=st(Object.values(S.ans),n);
+$("#app").innerHTML=`<div class=box><h2>${bdg(s.p)} Misi ${n} selesai!</h2><p>Benar ${s.c} dari ${s.t} soal (${s.p}%). Skor misi: <b>${s.p}</b> dari 100 - ${kat(s.p)}</p><p>Lencana: ${bdg(s.p)} ${kat(s.p)}</p><button class=big onclick="${n<3?"mission("+(n+1)+")":"finishAll()"}">${n<3?"Lanjut ke Misi "+(n+1)+" ➜":"Lihat Hasil Akhir"}</button></div>`}
+function finishAll(){clearInterval(tmr);if(!S)return;fillAll();const a=Object.values(S.ans),ms=[1,2,3].map(m=>st(a,m));
+const r={id:"JN"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),name:S.name,cls:S.cls,mode:S.mode,t:new Date().toISOString(),ms,fin:Math.round(ms.reduce((x,y)=>x+y.p,0)/3),a};
+const all=load();all.push(r);showR(r,save(all),"home()")}
+const PI=n=>P.findIndex(p=>p.n==n);
+function enc(r){const x=r.a.map(a=>a.m==3?[3,Q.findIndex(q=>"["+q.k+"] "+q.t==a.q),PI(a.u)]:[a.m,PI(a.c),PI(a.u)]);
+return "JN1:"+btoa(unescape(encodeURIComponent(JSON.stringify({id:r.id,n:r.name,k:r.cls,e:r.mode,t:r.t,x}))))}
+function dec(c){const d=JSON.parse(decodeURIComponent(escape(atob(c.slice(4)))));
+const a=d.x.map(([m,i,u])=>{const us=u<0?"-":P[u].n;if(m==3){const q=Q[i];return{m,q:"["+q.k+"] "+q.t,u:us,c:q.a,ok:us==q.a,k:"3|"+i}}
+return{m,q:m==1?"Letakkan "+P[i].n+" pada peta":"Pasangkan ibu kota "+P[i].c+" dengan provinsinya",u:us,c:P[i].n,ok:u==i,k:m+"|"+P[i].n}});
+const ms=[1,2,3].map(m=>st(a,m));if(!d.id||a.length!=63)throw 0;
+return{id:d.id,name:d.n,cls:d.k,mode:d.e,t:d.t,ms,fin:Math.round(ms.reduce((x,y)=>x+y.p,0)/3),a}}
+function cp(){const t=$("#kode");t.select();try{t.setSelectionRange(0,99999);document.execCommand("copy")}catch(e){}try{navigator.clipboard&&navigator.clipboard.writeText(t.value)}catch(e){}$("#cpm").textContent="Kode sudah dipilih dan disalin. Jika belum tersalin, tahan lalu pilih Salin. Tempel kode di tugas LMS."}
+function impCode(){const m=$("#kd").value.match(/JN1:[A-Za-z0-9+\/=]+/g)||[],a=load(),ids=new Set(a.map(r=>r.id));let c=0,b=0;
+m.forEach(x=>{try{const r=dec(x);if(!ids.has(r.id)){ids.add(r.id);a.push(r);c++}}catch(e){b++}});save(a);alert(c+" hasil baru diimpor"+(b?", "+b+" kode tidak valid":"")+(m.length?"":" (tidak ada kode ditemukan)")+".");teacher()}
+let LR;function dlOne(){dl("hasil-"+LR.name.replace(/[^\w]+/g,"_")+"-"+LR.id+".json",JSON.stringify([LR]),"application/json")}
+function showR(r,ok,back){LR=r;const wt=r.a.filter(x=>!x.ok),gw=new Set(wt.filter(x=>x.m==1).map(x=>PD[x.c].g)),
+gp=Object.keys(G).filter(g=>!gw.has(g)&&r.a.some(x=>x.m==1&&PD[x.c].g==g));
+const an=r.ms.map((m,i)=>PRE[i]+(m.p>=85?"sudah sangat baik":m.p>=70?"sudah baik":m.p>=55?"cukup, tetap perlu berlatih":"masih perlu banyak berlatih")+" ("+m.p+"%).");
+const cat=[...new Set(wt.filter(x=>x.m==3).map(x=>(x.q.match(/^\[(.*?)\]/)||[])[1]))].filter(Boolean);
+const m2=wt.filter(x=>x.m==2).map(x=>x.c+" - "+PD[x.c].c);
+const rc=[];if(gw.size)rc.push("Pelajari lagi letak provinsi di: "+[...gw].map(g=>G[g]).join(", ")+".");if(m2.length)rc.push("Hafalkan ibu kota: "+m2.join("; ")+".");if(cat.length)rc.push("Pelajari lagi budaya daerah bagian: "+cat.join(", ")+".");if(!rc.length)rc.push("Hebat! Semua materi sudah dikuasai. Coba tantang temanmu!");
+let n=0;
+$("#app").innerHTML=`<div class=box><h1>🏆 Hasil Petualangan</h1>${ok?"":"<p class=b>Peringatan: hasil gagal disimpan di browser ini.</p>"}
+<p><b>${E(r.name)}</b> - Kelas ${E(r.cls)} - ${new Date(r.t).toLocaleString("id-ID")} - Mode ${r.mode=="eval"?"Evaluasi":"Latihan"}</p>
+<h2>${bdg(r.fin)} Nilai akhir: ${r.fin} (${kat(r.fin)})</h2><p>Nilai akhir = rata-rata skor tiga misi. Skor misi = (jawaban benar : jumlah soal) x 100.</p>
+<div class=wrap><table><tr><th>Misi</th><th>Soal</th><th>Benar</th><th>Salah</th><th>Ketepatan</th><th>Skor</th></tr>${r.ms.map((m,i)=>`<tr><td>${MN[i]}</td><td>${m.t}</td><td>${m.c}</td><td>${m.w}</td><td>${m.p}%</td><td>${m.p}</td></tr>`).join("")}</table></div>
+<h3>Analisis kemampuan</h3><ul>${an.map(x=>`<li>${x}</li>`).join("")}${gp.map(g=>`<li>Kamu sudah sangat baik mengenali letak provinsi di ${G[g]}.</li>`).join("")}</ul>
+<h3>Rekomendasi belajar</h3><ul>${rc.map(x=>`<li>${E(x)}</li>`).join("")}</ul>
+<h3>Riwayat jawaban</h3><div class=wrap><table><tr><th>No</th><th>Soal / tugas</th><th>Jawaban siswa</th><th>Jawaban benar</th><th>Status</th><th>Skor</th></tr>${r.a.map(x=>`<tr><td>${++n}</td><td>M${x.m}: ${E(x.q)}</td><td>${E(x.u)}</td><td>${E(x.c)}</td><td class=${x.ok?"g":"b"}>${x.ok?"Benar":"Salah"}</td><td>${x.ok?+(100/TOT[x.m-1]).toFixed(1):0}</td></tr>`).join("")}</table></div>
+${back=="home()"?`<div class=pet><b>Kirim hasilmu ke guru:</b> klik tombol Unduh hasil, lalu unggah file yang terunduh pada tugas di LMS.</div>`:""}<div class=ctl>${back=="home()"?`<button onclick=dlOne() style="background:var(--pr);color:#fff;font-size:1.1em">⬇ Unduh hasil</button>`:""}<button onclick="${back}">Kembali</button><button onclick=print()>Cetak laporan</button></div></div>`}
+/* ===== Dashboard guru ===== */
+function teacher(){const a=load(),cl=[...new Set(a.map(r=>r.cls))],avg=f=>a.length?Math.round(a.reduce((x,r)=>x+f(r),0)/a.length):0,
+ks=[0,1,2].map(i=>avg(r=>r.ms[i].p)),fs=a.map(r=>r.fin),lo=ks.indexOf(Math.min(...ks)),
+wc={};a.forEach(r=>r.a.forEach(x=>{if(!x.ok){const k="M"+x.m+": "+x.q;wc[k]=(wc[k]||0)+1}}));
+const top=Object.entries(wc).sort((x,y)=>y[1]-x[1]).slice(0,5);
+$("#app").innerHTML=`<div class=box><h1>👩‍🏫 Dashboard Guru</h1><button class=sm onclick=home()>⬅ Halaman awal</button>
+<div class=st><div>Jumlah siswa<br><b>${a.length}</b></div><div>Rata-rata<br><b>${avg(r=>r.fin)}</b></div><div>Tertinggi<br><b>${a.length?Math.max(...fs):"-"}</b></div><div>Terendah<br><b>${a.length?Math.min(...fs):"-"}</b></div></div>
+<h3>Ketepatan per kompetensi (rata-rata kelas)</h3>${KOM.map((k,i)=>`<p>${k}: <b>${ks[i]}%</b></p><div class=bar><i style="width:${ks[i]}%"></i></div>`).join("")}
+<h3>Analisis umum kelas</h3><p>${a.length?`Kompetensi paling kuat: ${KOM[ks.indexOf(Math.max(...ks))]}. Perlu penguatan: <b>${KOM[lo]}</b> (${ks[lo]}%).`:"Belum ada data siswa."}</p>
+<h3>Soal paling banyak dijawab salah</h3><ol>${top.map(t=>`<li>${E(t[0])} (${t[1]} siswa)</li>`).join("")||"<li>-</li>"}</ol>
+<h3>Daftar siswa</h3><div class=ctl><input id=sq placeholder="Cari nama..." oninput="D.q=this.value;tb()"><select id=sk onchange="D.k=this.value;tb()"><option value="">Semua kelas</option>${cl.map(c=>`<option>${E(c)}</option>`).join("")}</select><select onchange="D.s=this.value;tb()"><option value=d>Nilai tertinggi</option><option value=a>Nilai terendah</option><option value=n>Nama A-Z</option></select></div>
+<div class=wrap><table id=tb></table></div>
+<div class=ctl><button onclick=csv(1)>⬇ Rekap CSV</button><button onclick=csv(2)>⬇ Detail jawaban CSV</button><button onclick=jsn()>⬇ Cadangan JSON</button><label class=sm style="display:inline;margin:0">Impor hasil siswa (JSON, boleh banyak file) <input type=file accept=.json multiple onchange=imp(this) style="width:auto"></label><button onclick=print()>🖨 Cetak</button></div>
+<div class=ctl><label style="margin:0">Timer (menit, 0 = tanpa timer)</label><input id=tmi type=number min=0 value="${+localStorage.getItem(TK)||0}"><button onclick="localStorage.setItem(TK,Math.max(0,+$('#tmi').value||0));alert('Timer disimpan')">Simpan timer</button><button onclick=clr() style="background:var(--bad);color:#fff">Hapus semua data</button></div>
+<div class=pet>Data tersimpan di localStorage, hanya pada browser dan perangkat ini. Untuk mengumpulkan data dari banyak perangkat: ekspor JSON tiap perangkat lalu impor di satu perangkat, atau pasang Google Apps Script (Web App dengan fungsi doPost yang membaca JSON dan memanggil sheet.appendRow) lalu kirim hasil dengan fetch.</div></div>`;tb()}
+function rows(){let a=load().filter(r=>r.name.toLowerCase().includes(D.q.toLowerCase())&&(!D.k||r.cls==D.k));return a.sort((x,y)=>D.s=="n"?x.name.localeCompare(y.name):D.s=="a"?x.fin-y.fin:y.fin-x.fin)}
+function tb(){$("#tb").innerHTML=`<tr><th>Nama</th><th>Kelas</th><th>Waktu</th><th>Nilai</th><th>M1</th><th>M2</th><th>M3</th><th>Detail</th></tr>`+rows().map(r=>`<tr><td>${E(r.name)}</td><td>${E(r.cls)}</td><td>${new Date(r.t).toLocaleString("id-ID")}</td><td><b>${r.fin}</b></td><td>${r.ms[0].p}%</td><td>${r.ms[1].p}%</td><td>${r.ms[2].p}%</td><td><button class=sm data-i="${r.id}" onclick=det(this.dataset.i)>Lihat</button></td></tr>`).join("")}
+function det(id){const r=load().find(x=>x.id==id);if(r)showR(r,true,"teacher()")}
+async function dl(n,t,m){try{const d=await claude.use("downloads");if(!d){alert("Unduhan tidak tersedia di tampilan ini.");return}await d.save({filename:n,data:"\uFEFF"+t})}catch(e){if(!e||e.code!="declined")alert("Unduhan gagal. Coba lagi.")}}
+const q2=v=>'"'+String(v).replace(/"/g,'""')+'"';
+function csv(k){const L=[];if(k==1){L.push(["Nama","Kelas","Mode","Waktu","Nilai Akhir","Skor Misi 1","Skor Misi 2","Skor Misi 3","Peta %","Ibu Kota %","Budaya %","Kategori"]);rows().forEach(r=>L.push([r.name,r.cls,r.mode,r.t,r.fin,...r.ms.map(m=>m.p),...r.ms.map(m=>m.p),kat(r.fin)]))}
+else{L.push(["Nama","Kelas","Waktu","Misi","Soal","Jawaban Siswa","Jawaban Benar","Status"]);rows().forEach(r=>r.a.forEach(x=>L.push([r.name,r.cls,r.t,x.m,x.q,x.u,x.c,x.ok?"Benar":"Salah"])))}
+dl(k==1?"rekap-jelajah-nusantara.csv":"detail-jawaban.csv",L.map(l=>l.map(q2).join(";")).join("\r\n"),"text/csv")}
+function jsn(){dl("cadangan-jelajah-nusantara.json",JSON.stringify(load(),null,1),"application/json")}
+function imp(i){const fs=[...i.files];if(!fs.length)return;let c=0,bad=0,n=0;const a=load(),ids=new Set(a.map(r=>r.id));
+fs.forEach(f=>{const R=new FileReader();R.onload=()=>{try{let d=JSON.parse(R.result.replace(/^\uFEFF/,""));if(!Array.isArray(d))d=[d];d.forEach(r=>{if(r&&r.id&&r.ms&&r.a&&!ids.has(r.id)){ids.add(r.id);a.push(r);c++}})}catch(e){bad++}
+if(++n==fs.length){save(a);alert(c+" hasil baru diimpor"+(bad?", "+bad+" file tidak valid":"")+".");teacher()}};R.readAsText(f)})}
+function clr(){if(confirm("Hapus SEMUA data siswa? Sebaiknya unduh cadangan JSON dulu.")&&confirm("Yakin? Tindakan ini tidak bisa dibatalkan.")){save([]);teacher()}}
+home();
+</script></body></html>
